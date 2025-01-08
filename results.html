@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Disease Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            font-family: Times;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .result {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .result div {
+            flex: 1;
+            margin-right: 10px;
+        }
+        .result div:last-child {
+            margin-right: 0;
+        }
+        .healthy-range {
+            font-size: 14px;
+            color: #888;
+        }
+        .prediction {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 24px;
+        }
+        .button {
+            display: block;
+            width: 200px;
+            padding: 10px;
+            margin: 20px auto;
+            text-align: center;
+            background-color: #28a745;
+            color: white;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #218838;
+        }
+        .quotes-section {
+            text-align:center;
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-top: 2px solid #ccc;
+        }
+        .quotes-section h3 {
+            color: #4CAF50;
+            font-size: 20px;
+        }
+        .quotes-section p {
+            font-style: italic;
+            color: #555;
+            font-size: 16px;
+        }
+        .entered-data, .ranges-layout {
+            margin-top: 20px;
+            background-color: #f8f8f8;
+            padding: 15px;
+            border: 1px solid #ccc;
+        }
+        .entered-data h3, .ranges-layout h3 {
+            color: #28a745;
+        }
+        .entered-data p, .ranges-layout p {
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Heart Disease Prediction Result</h1>
+
+        <!-- Entered Data Section -->
+        <div class="entered-data">
+            <h3>Entered Data:</h3>
+            <div class="result">
+                <div>
+                    <p><strong>Age:</strong> {{ age }}</p>
+                    <p><strong>Sex:</strong> {{ sex }}</p>
+                </div>
+                <div>
+                    <p><strong>Cigarettes per Day:</strong> {{ cigsPerDay }}</p>
+                    <p><strong>Total Cholesterol:</strong> {{ totChol }}</p>
+                </div>
+                <div>
+                    <p><strong>Systolic BP:</strong> {{ sysBP }}</p>
+                    <p><strong>Glucose:</strong> {{ glucose }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Prediction Result -->
+        <div class="prediction">
+            <h2 style="color: {% if prediction == 1 %}red{% else %}green{% endif %};">
+                {% if prediction == 1 %}
+                    High Risk of Heart Disease
+                {% else %}
+                    Low Risk of Heart Disease
+                {% endif %}
+            </h2>
+        </div>
+
+        <!-- Ranges Layout Section -->
+        <div class="ranges-layout">
+            <h3>Healthy Ranges:</h3>
+            <div class="result">
+                <div>
+                    <p><strong>Age:</strong> 18-120 years</p>
+                    <p><strong>Sex:</strong> 1 = Male, 0 = Female</p>
+                </div>
+                <div>
+                    <p><strong>Cigarettes per Day:</strong> 0 (No smoking)</p>
+                    <p><strong>Total Cholesterol:</strong> Less than 200 mg/dL</p>
+                </div>
+                <div>
+                    <p><strong>Systolic BP:</strong> 90-120 mmHg</p>
+                    <p><strong>Glucose:</strong> 70-100 mg/dL (Fasting)</p>
+                </div>
+            </div>
+        </div>
+
+        <button class="button" onclick="window.location.href='/'">Go Back</button>
+    </div>
+
+    <!-- Quotes Section -->
+    <div class="quotes-section">
+        <h3>REMEMBER:</h3>
+        <p><em>"The greatest wealth is health." – Virgil</em></p>
+        <p><em>"Take care of your body. It's the only place you have to live." – Jim Rohn</em></p>
+        <p><em>"The first wealth is health." – Ralph Waldo Emerson</em></p>
+        <p><em>"A healthy outside starts from the inside." – Robert Urich</em></p>
+        <p><em>"It is health that is real wealth and not pieces of gold and silver." – Mahatma Gandhi</em></p>
+    </div>
+
+</body>
+</html>
