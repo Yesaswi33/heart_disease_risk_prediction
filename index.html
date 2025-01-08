@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Disease Prediction</title>
+    <style>
+        body {
+            font-family: "Times New Roman", Times, serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 50%;
+            margin: auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+        h1 {
+            text-align: center;
+            color: green;
+            padding-bottom: 20px;
+        }
+        .input-box {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+        }
+        .button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+        .form-description {
+            color: #777;
+            font-size: 12px;
+        }
+        .result-box {
+            background-color: #f4f4f9;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: center;
+            border: 1px solid #ccc;
+            font-size: 18px;
+        }
+        .description-section {
+            font-size: 16px; /* Increased font size */
+            color: #333;
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #f0f0f0;
+            border-top: 2px solid #ccc;
+        }
+        .description-section h2 {
+            color: #4CAF50;
+            font-size: 22px; /* Increased font size for heading */
+        }
+        .description-section p {
+            font-size: 18px; /* Increased font size for description text */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Heart Disease Prediction</h1>
+        <form method="POST" action="/predict">
+            <div class="form-group">
+                <label for="age">Age</label>
+                <input type="number" name="age" id="age" class="input-box" placeholder="Enter your age (e.g., 45)" required>
+                <div class="form-description">Data Type: Integer (e.g., 45)</div>
+            </div>
+            <div class="form-group">
+                <label for="sex">Sex (1=Male, 0=Female)</label>
+                <input type="number" name="sex" id="sex" class="input-box" placeholder="Enter 1 for Male, 0 for Female" required>
+                <div class="form-description">Data Type: Integer (1 = Male, 0 = Female)</div>
+            </div>
+            <div class="form-group">
+                <label for="cigsPerDay">Cigarettes Per Day</label>
+                <input type="number" name="cigsPerDay" id="cigsPerDay" class="input-box" placeholder="Enter number of cigarettes per day (e.g., 10)" required>
+                <div class="form-description">Data Type: Integer (e.g., 10)</div>
+            </div>
+            <div class="form-group">
+                <label for="totChol">Total Cholesterol</label>
+                <input type="number" name="totChol" id="totChol" class="input-box" placeholder="Enter Total Cholesterol level (e.g., 220)" required>
+                <div class="form-description">Data Type: Integer (e.g., 220)</div>
+            </div>
+            <div class="form-group">
+                <label for="sysBP">Systolic Blood Pressure</label>
+                <input type="number" name="sysBP" id="sysBP" class="input-box" placeholder="Enter Systolic BP (e.g., 120)" required>
+                <div class="form-description">Data Type: Integer (e.g., 120)</div>
+            </div>
+            <div class="form-group">
+                <label for="glucose">Glucose Level</label>
+                <input type="number" name="glucose" id="glucose" class="input-box" placeholder="Enter Glucose level (e.g., 90)" required>
+                <div class="form-description">Data Type: Integer (e.g., 90)</div>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="button">Submit</button>
+            </div>
+        </form>
+
+        {% if prediction %}
+            <div class="result-box">
+                <h2>Prediction Results:</h2>
+                <p>{{ prediction }}</p>
+                <h3>Specifications:</h3>
+                <ul>
+                    <li>Age: Must be an integer (e.g., 45)</li>
+                    <li>Sex: 1 for Male, 0 for Female</li>
+                    <li>Cigarettes per Day: Integer value (e.g., 10)</li>
+                    <li>Total Cholesterol: Integer value (e.g., 220)</li>
+                    <li>Systolic BP: Integer value (e.g., 120)</li>
+                    <li>Glucose: Integer value (e.g., 90)</li>
+                </ul>
+            </div>
+        {% endif %}
+    </div>
+
+    <!-- Description Section at the Bottom -->
+    <div class="description-section">
+        <h2 style="text-align:center;">Input Field Descriptions</h2>
+        <p><strong>Age:</strong> The age of the individual. The model uses this to understand how age impacts heart disease risk. Typical range is from 20 to 80 years.</p>
+        <p><strong>Sex:</strong> The gender of the individual, where '1' represents Male and '0' represents Female. This factor is used to account for gender-related risk factors in heart disease.</p>
+        <p><strong>Cigarettes Per Day:</strong> The number of cigarettes an individual smokes daily. Smoking is a major risk factor for heart disease, and this input helps to evaluate smoking-related risks.</p>
+        <p><strong>Total Cholesterol:</strong> The total cholesterol level in the blood. High cholesterol levels are linked to increased heart disease risk. Typical values range from 150 to 250 mg/dL.</p>
+        <p><strong>Systolic Blood Pressure:</strong> The pressure in your arteries when your heart beats. Higher systolic blood pressure indicates a higher risk for heart disease.</p>
+        <p><strong>Glucose Level:</strong> The amount of glucose (sugar) in the blood. High glucose levels are often associated with diabetes, which increases the risk of heart disease.</p>
+    </div>
+    <div>
+        <p style="color:green; text-align:center;">Deployed by YESASWI MADABATTULA</p>
+    </div>
+</body>
+</html>
