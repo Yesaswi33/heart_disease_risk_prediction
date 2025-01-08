@@ -16,3 +16,9 @@ documents:
       train_model.py
     venv:
       #virtual environment related files
+
+setup the virtual env in the project file
+install all the req libraries to perform the operations in the venv
+activate the venv source
+perform the tasks
+
